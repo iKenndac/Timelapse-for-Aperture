@@ -1,0 +1,256 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5072A75513772BDA00022C98 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5072A75413772BDA00022C98 /* Cocoa.framework */; };
+		5072A75F13772BDA00022C98 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5072A75D13772BDA00022C98 /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5072A75113772BDA00022C98 /* Timelapse For Aperture.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Timelapse For Aperture.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5072A75413772BDA00022C98 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		5072A75713772BDA00022C98 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		5072A75813772BDA00022C98 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5072A75913772BDA00022C98 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5072A75C13772BDA00022C98 /* Timelapse For Aperture-Info.plist */ = {isa = PBXFileReference; path = "Timelapse For Aperture-Info.plist"; sourceTree = "<group>"; };
+		5072A75E13772BDA00022C98 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5072A76013772BDA00022C98 /* Timelapse For Aperture-Prefix.pch */ = {isa = PBXFileReference; path = "Timelapse For Aperture-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5072A74E13772BDA00022C98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5072A75513772BDA00022C98 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5072A74613772BDA00022C98 = {
+			isa = PBXGroup;
+			children = (
+				5072A75A13772BDA00022C98 /* Timelapse For Aperture */,
+				5072A75313772BDA00022C98 /* Frameworks */,
+				5072A75213772BDA00022C98 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5072A75213772BDA00022C98 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5072A75113772BDA00022C98 /* Timelapse For Aperture.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5072A75313772BDA00022C98 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5072A75413772BDA00022C98 /* Cocoa.framework */,
+				5072A75613772BDA00022C98 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5072A75613772BDA00022C98 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5072A75713772BDA00022C98 /* AppKit.framework */,
+				5072A75813772BDA00022C98 /* CoreData.framework */,
+				5072A75913772BDA00022C98 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		5072A75A13772BDA00022C98 /* Timelapse For Aperture */ = {
+			isa = PBXGroup;
+			children = (
+				5072A75B13772BDA00022C98 /* Supporting Files */,
+			);
+			path = "Timelapse For Aperture";
+			sourceTree = "<group>";
+		};
+		5072A75B13772BDA00022C98 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5072A75C13772BDA00022C98 /* Timelapse For Aperture-Info.plist */,
+				5072A75D13772BDA00022C98 /* InfoPlist.strings */,
+				5072A76013772BDA00022C98 /* Timelapse For Aperture-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5072A75013772BDA00022C98 /* Timelapse For Aperture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5072A76313772BDA00022C98 /* Build configuration list for PBXNativeTarget "Timelapse For Aperture" */;
+			buildPhases = (
+				5072A74D13772BDA00022C98 /* Sources */,
+				5072A74E13772BDA00022C98 /* Frameworks */,
+				5072A74F13772BDA00022C98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Timelapse For Aperture";
+			productName = "Timelapse For Aperture";
+			productReference = 5072A75113772BDA00022C98 /* Timelapse For Aperture.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5072A74813772BDA00022C98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "KennettNet Software Limited";
+			};
+			buildConfigurationList = 5072A74B13772BDA00022C98 /* Build configuration list for PBXProject "Timelapse For Aperture" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5072A74613772BDA00022C98;
+			productRefGroup = 5072A75213772BDA00022C98 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5072A75013772BDA00022C98 /* Timelapse For Aperture */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5072A74F13772BDA00022C98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5072A75F13772BDA00022C98 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5072A74D13772BDA00022C98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5072A75D13772BDA00022C98 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5072A75E13772BDA00022C98 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5072A76113772BDA00022C98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5072A76213772BDA00022C98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5072A76413772BDA00022C98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Timelapse For Aperture/Timelapse For Aperture-Prefix.pch";
+				INFOPLIST_FILE = "Timelapse For Aperture/Timelapse For Aperture-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		5072A76513772BDA00022C98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Timelapse For Aperture/Timelapse For Aperture-Prefix.pch";
+				INFOPLIST_FILE = "Timelapse For Aperture/Timelapse For Aperture-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5072A74B13772BDA00022C98 /* Build configuration list for PBXProject "Timelapse For Aperture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5072A76113772BDA00022C98 /* Debug */,
+				5072A76213772BDA00022C98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5072A76313772BDA00022C98 /* Build configuration list for PBXNativeTarget "Timelapse For Aperture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5072A76413772BDA00022C98 /* Debug */,
+				5072A76513772BDA00022C98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5072A74813772BDA00022C98 /* Project object */;
+}
