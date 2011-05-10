@@ -7,6 +7,7 @@
 //
 
 #import "TimeLapseApertureExporter.h"
+#import "PreviewGenerator.h"
 
 static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefaultsKVOContext";
 
@@ -70,19 +71,38 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
                forKeyPath:@"lastPath"
                   options:0
                   context:kTimeLapseUserDefaultsKVOContext];
+        
+        [self addObserver:self
+               forKeyPath:@"preview"
+                  options:0
+                  context:nil];
+        
+        self.previewGenerator = [[[PreviewGenerator alloc] initWithExporter:self] autorelease];
     }
 	
 	return self;
 }
 
 -(void)awakeFromNib {
-    [[self.movieNameField cell] setPlaceholderString:[[self.exportManager propertiesWithoutThumbnailForImageAtIndex:0] valueForKey:kExportKeyProjectName]];
+    @synchronized(exportManager) {
+        [[self.movieNameField cell] setPlaceholderString:[[self.exportManager propertiesWithoutThumbnailForImageAtIndex:0] valueForKey:kExportKeyProjectName]];
+    }
     [self.movieNameField setStringValue:[[[self movieNameField] cell] placeholderString]];
+
+    [previewContainer setContentView:self.generatingPreviewView];
+
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
     if (context == kTimeLapseUserDefaultsKVOContext) {
+        
+        if ([keyPath isEqualToString:@"frameRateFieldValue"] || [keyPath isEqualToString:@"frameRateFieldModifier"]) {
+            self.previewGenerator.cancelled = YES;
+            self.preview = nil;
+            self.previewGenerator = self.previewGenerator = [[[PreviewGenerator alloc] initWithExporter:self] autorelease];
+        }
+        
         NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithBool:self.alsoExportImages], kAlsoExportFramesUserDefaultsKey,
                                   self.frameRateFieldValue, kFrameFieldValueUserDefaultsKey,
@@ -93,6 +113,10 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
         [[NSUserDefaults standardUserDefaults] setPersistentDomain:defaults
                                                            forName:[[NSBundle bundleForClass:[self class]] bundleIdentifier]];
         [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    } else if ([keyPath isEqualToString:@"preview"]) {
+        self.previewGenerator = nil;
+        [self.previewContainer setContentView:self.preview == nil ? self.generatingPreviewView : self.previewView];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
@@ -101,6 +125,9 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 @synthesize firstView;
 @synthesize lastView;
 @synthesize movieNameField;
+@synthesize generatingPreviewView;
+@synthesize previewView;
+@synthesize previewContainer;
 @synthesize apiManager;
 @synthesize exportManager;
 @synthesize progressLock;
@@ -108,7 +135,10 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 @synthesize frameRateFieldValue;
 @synthesize frameRateFieldModifier;
 @synthesize movie;
+@synthesize preview;
 @synthesize lastPath;
+@synthesize previewPath;
+@synthesize previewGenerator;
 
 +(NSSet *)keyPathsForValuesAffectingEstimatedMovieLength {
     return [NSSet setWithObjects:@"frameRateFieldValue", @"frameRateFieldModifier", nil];
@@ -118,10 +148,12 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
     
     double frameFieldValue = [self.frameRateFieldValue doubleValue];
     
-    if ([self.frameRateFieldModifier unsignedIntegerValue] == kFrameRateFramesPerSecondModifier) {
-        return ((double)[self.exportManager imageCount]) / frameFieldValue;
-    } else {
-        return ((double)[self.exportManager imageCount]) * frameFieldValue;
+    @synchronized(exportManager) {
+        if ([self.frameRateFieldModifier unsignedIntegerValue] == kFrameRateFramesPerSecondModifier) {
+            return ((double)[self.exportManager imageCount]) / frameFieldValue;
+        } else {
+            return ((double)[self.exportManager imageCount]) * frameFieldValue;
+        }
     }
 }
 
@@ -188,7 +220,9 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 -(void)exportManagerShouldBeginExport {
 	// Resizer doesn't need to perform any initialization here.
 	// As an improvement, it could check to make sure the user entered at least one size
-	[self.exportManager shouldBeginExport];
+    @synchronized(exportManager) {
+        [self.exportManager shouldBeginExport];
+    }
 }
 
 -(void)exportManagerWillBeginExportToPath:(NSString *)path {
@@ -196,9 +230,12 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 	self.lastPath = path;
     
     // Make the movie
+    NSString *movieFileName = nil;
     
-    NSString *movieFileName = [[self.movieNameField stringValue] length] > 0 ? [self.movieNameField stringValue] :
-    [[self.exportManager propertiesWithoutThumbnailForImageAtIndex:0] valueForKey:kExportKeyProjectName];
+    @synchronized(exportManager) {
+        movieFileName = [[self.movieNameField stringValue] length] > 0 ? [self.movieNameField stringValue] :
+        [[self.exportManager propertiesWithoutThumbnailForImageAtIndex:0] valueForKey:kExportKeyProjectName];
+    }
     
     if (![[movieFileName pathExtension] isEqualToString:@"mov"])
         movieFileName = [movieFileName stringByAppendingPathExtension:@"mov"];
@@ -276,18 +313,20 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 
 -(void)exportManagerDidFinishExport {
     
-    if ([movie canUpdateMovieFile])
-        [movie updateMovieFile];
+    if ([self.movie canUpdateMovieFile])
+        [self.movie updateMovieFile];
     
     self.movie = nil;
     
-	[self.exportManager shouldFinishExport];
+    @synchronized(exportManager) {
+        [self.exportManager shouldFinishExport];
+    }
 }
 
 -(void)exportManagerShouldCancelExport {
     
-    if ([movie canUpdateMovieFile])
-        [movie updateMovieFile];
+    if ([self.movie canUpdateMovieFile])
+        [self.movie updateMovieFile];
     
     [[NSFileManager defaultManager] removeItemAtPath:[[self.lastPath stringByAppendingPathComponent:[self.movieNameField stringValue]] 
                                                       stringByAppendingPathExtension:@"mov"] 
@@ -295,7 +334,9 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
     
     self.movie = nil;
     
-	[self.exportManager shouldCancelExport];
+    @synchronized(exportManager) {
+        [self.exportManager shouldCancelExport];
+    }
 }
 
 #pragma mark -
@@ -323,7 +364,16 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
     [self removeObserver:self forKeyPath:@"frameRateFieldValue"];
     [self removeObserver:self forKeyPath:@"frameRateFieldModifier"];
     [self removeObserver:self forKeyPath:@"lastPath"];
+    [self removeObserver:self forKeyPath:@"preview"];
     
+    self.previewGenerator.cancelled = YES;
+    self.previewGenerator = nil;
+    
+    if ([self.previewPath length] > 0)
+        [[NSFileManager defaultManager] removeItemAtPath:self.previewPath error:nil];
+    
+    self.previewPath = nil;
+    self.preview = nil;
     self.lastPath = nil;
     self.frameRateFieldValue = nil;
     self.frameRateFieldModifier = nil;

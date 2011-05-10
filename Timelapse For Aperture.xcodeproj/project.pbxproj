@@ -13,6 +13,7 @@
 		5072A76813772BFA00022C98 /* TimeLapseApertureExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5072A76713772BFA00022C98 /* TimeLapseApertureExporter.m */; };
 		5072A76A13772D0300022C98 /* TimeLapseApertureExporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5072A76913772D0300022C98 /* TimeLapseApertureExporter.xib */; };
 		50DE0A6F13772FC1002C613F /* PluginManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DE0A6E13772FC1002C613F /* PluginManager.framework */; };
+		50ED06461379EA2700A7565D /* PreviewGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED06451379EA2700A7565D /* PreviewGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		5072A76B13772E7300022C98 /* ApertureExportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApertureExportManager.h; sourceTree = "<group>"; };
 		5072A76C13772E7300022C98 /* ApertureExportPlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApertureExportPlugIn.h; sourceTree = "<group>"; };
 		50DE0A6E13772FC1002C613F /* PluginManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PluginManager.framework; path = /Library/Frameworks/PluginManager.framework; sourceTree = "<absolute>"; };
+		50ED06441379EA2700A7565D /* PreviewGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewGenerator.h; sourceTree = "<group>"; };
+		50ED06451379EA2700A7565D /* PreviewGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,8 @@
 				50DE0A7D137731C4002C613F /* Aperture Headers */,
 				5072A76613772BFA00022C98 /* TimeLapseApertureExporter.h */,
 				5072A76713772BFA00022C98 /* TimeLapseApertureExporter.m */,
+				50ED06441379EA2700A7565D /* PreviewGenerator.h */,
+				50ED06451379EA2700A7565D /* PreviewGenerator.m */,
 				5072A75B13772BDA00022C98 /* Supporting Files */,
 				5072A76913772D0300022C98 /* TimeLapseApertureExporter.xib */,
 			);
@@ -179,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5072A76813772BFA00022C98 /* TimeLapseApertureExporter.m in Sources */,
+				50ED06461379EA2700A7565D /* PreviewGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +244,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timelapse For Aperture/Timelapse For Aperture-Prefix.pch";
 				INFOPLIST_FILE = "Timelapse For Aperture/Timelapse For Aperture-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Aperture/Plug-Ins/Export";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = ApertureExport;
 			};
@@ -254,7 +260,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timelapse For Aperture/Timelapse For Aperture-Prefix.pch";
 				INFOPLIST_FILE = "Timelapse For Aperture/Timelapse For Aperture-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Aperture/Plug-Ins/Export";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = ApertureExport;
 			};
