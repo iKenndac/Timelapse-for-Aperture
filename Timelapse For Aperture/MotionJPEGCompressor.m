@@ -35,6 +35,10 @@
     
 }
 
+-(NSDictionary *)userDefaults {
+    return nil;
+}
+
 #pragma mark -
 
 -(void)prepareForImagesWithDestinationFolderURL:(NSURL *)destination videoName:(NSString *)name {

@@ -8,7 +8,8 @@
 
 #import "H264VideoCompressor.h"
 
-static uint32_t kExportTimeScale = 10000;
+static uint32_t const kExportTimeScale = 10000;
+static NSString * const kCompressionBitRateMbitUserDefaultsKey = @"MegaBits";
 
 @interface H264VideoCompressor()
 
@@ -26,8 +27,14 @@ static uint32_t kExportTimeScale = 10000;
         return nil;
     }
 
-    if ((self = [super init])) {
+    if ((self = [super initWithWindowNibName:@"H264VideoCompressor"])) {
         // Initialization code here.
+        
+        if ([plist valueForKey:kCompressionBitRateMbitUserDefaultsKey]) {
+            self.compressionBitRateMbit = [plist valueForKey:kCompressionBitRateMbitUserDefaultsKey];
+        } else {
+            self.compressionBitRateMbit = [NSNumber numberWithInteger:2.0];
+        }
     }
     
     return self;
@@ -36,6 +43,7 @@ static uint32_t kExportTimeScale = 10000;
 @synthesize imageInputAdaptor;
 @synthesize videoWriter;
 @synthesize videoFileURL;
+@synthesize compressionBitRateMbit;
 
 -(BOOL)canBeConfigured {
     return YES;
@@ -45,8 +53,26 @@ static uint32_t kExportTimeScale = 10000;
     return @"H.264";
 }
 
++(NSSet *)keyPathsForValuesAffectingUserDefaults {
+    return [NSSet setWithObject:@"compressionBitRateMbit"];
+}
+
+-(NSDictionary *)userDefaults {
+    return [NSDictionary dictionaryWithObject:self.compressionBitRateMbit
+                                       forKey:kCompressionBitRateMbitUserDefaultsKey];
+}
+
 -(void)showConfigurationInParentWindow:(NSWindow *)parentWindow {
-    
+    [NSApp beginSheet:self.window
+       modalForWindow:parentWindow
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
+}
+
+-(IBAction)closeSheet:(id)sender {
+    [NSApp endSheet:self.window];
+    [self.window orderOut:sender];
 }
 
 #pragma mark -
@@ -55,8 +81,8 @@ static uint32_t kExportTimeScale = 10000;
     
     NSURL *targetURL = [destination URLByAppendingPathComponent:name];
     
-    if (![[targetURL pathExtension] isEqualToString:@"mov"])
-        targetURL = [targetURL URLByAppendingPathExtension:@"mov"];
+    if (![[targetURL pathExtension] isEqualToString:@"mp4"])
+        targetURL = [targetURL URLByAppendingPathExtension:@"mp4"];
     
     self.videoFileURL = targetURL;
     
@@ -81,7 +107,7 @@ static uint32_t kExportTimeScale = 10000;
     CMTime frameTime = CMTimeMake(currentEndLocation, kExportTimeScale);
     
     if ([self.imageInputAdaptor appendPixelBuffer:buffer
-                         withPresentationTime:frameTime])
+                             withPresentationTime:frameTime])
         currentEndLocation += (uint64_t)(frameDuration * kExportTimeScale);
     
     if (buffer != NULL)
@@ -106,11 +132,15 @@ static uint32_t kExportTimeScale = 10000;
     
     NSError *err = nil;
     self.videoWriter = [[[AVAssetWriter alloc] initWithURL:self.videoFileURL
-                                                  fileType:AVFileTypeQuickTimeMovie
+                                                  fileType:AVFileTypeMPEG4
                                                      error:&err] autorelease];
+    
+    NSNumber *compressionRateBits = [NSNumber numberWithDouble:[self.compressionBitRateMbit doubleValue] * 1024 * 1024];
     
     NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                    AVVideoCodecH264, AVVideoCodecKey,
+                                   [NSDictionary dictionaryWithObject:compressionRateBits forKey:AVVideoAverageBitRateKey], AVVideoCompressionPropertiesKey,
+                                   AVVideoScalingModeResizeAspectFill, AVVideoScalingModeKey,
                                    [NSNumber numberWithDouble:imageSize.width], AVVideoWidthKey,
                                    [NSNumber numberWithDouble:imageSize.height], AVVideoHeightKey,
                                    nil];
@@ -123,6 +153,8 @@ static uint32_t kExportTimeScale = 10000;
     
     if (![self.videoWriter canAddInput:videoWriterInput])
         return;
+    
+    [self.videoWriter addInput:videoWriterInput];
     
     videoWriterInput.expectsMediaDataInRealTime = NO;
     [self.videoWriter startWriting];

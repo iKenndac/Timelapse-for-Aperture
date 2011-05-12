@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @protocol VideoCompressor <NSObject>
 
 -(id)initWithPropertyListRepresentation:(NSDictionary *)plist;
@@ -21,6 +20,7 @@
 
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) BOOL canBeConfigured;
+@property (nonatomic, readonly) NSDictionary *userDefaults;
 
 -(void)showConfigurationInParentWindow:(NSWindow *)parentWindow;
 

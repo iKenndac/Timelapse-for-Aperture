@@ -76,7 +76,9 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
                 
                 if (class_conformsToProtocol(currentClass, @protocol(VideoCompressor))) {
                     
-                    id compressor = [[currentClass alloc] initWithPropertyListRepresentation:nil];
+                    NSString *className = NSStringFromClass(currentClass);
+                    
+                    id compressor = [[currentClass alloc] initWithPropertyListRepresentation:[persistantDomain valueForKey:className]];
                     if (compressor != nil) {
                         [videoCompressors addObject:compressor];
                         [compressor release];
@@ -93,6 +95,7 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
         }];
          
         self.availableCompressors = [NSArray arrayWithArray:videoCompressors];
+        self.videoCompressor = [self.availableCompressors objectAtIndex:0];
         
         if (self.lastPath == nil)
             self.lastPath = @"~/";
@@ -122,6 +125,11 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
                   options:0
                   context:nil];
         
+        [self addObserver:self
+               forKeyPath:@"videoCompressor.userDefaults"
+                  options:0
+                  context:kTimeLapseUserDefaultsKVOContext];
+        
         self.previewGenerator = [[[PreviewGenerator alloc] initWithExporter:self] autorelease];
     }
 	
@@ -148,15 +156,25 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
             self.previewGenerator = self.previewGenerator = [[[PreviewGenerator alloc] initWithExporter:self] autorelease];
         }
         
-        NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSNumber numberWithBool:self.alsoExportImages], kAlsoExportFramesUserDefaultsKey,
-                                  self.frameRateFieldValue, kFrameFieldValueUserDefaultsKey,
-                                  self.frameRateFieldModifier, kFrameFieldModifierUserDefaultsKey, 
-                                  self.lastPath, kLastPathUserDefaultsKey,
-                                  nil];
+        NSDictionary *persistantDomain = [[NSUserDefaults standardUserDefaults] persistentDomainForName:
+                                          [[NSBundle bundleForClass:[self class]] bundleIdentifier]];
         
-        [[NSUserDefaults standardUserDefaults] setPersistentDomain:defaults
+        NSMutableDictionary *mutableDomain = [[persistantDomain mutableCopy] autorelease];
+        if (mutableDomain == nil)
+            mutableDomain = [NSMutableDictionary dictionary];
+        
+        [mutableDomain setValue:[NSNumber numberWithBool:self.alsoExportImages] forKey:kAlsoExportFramesUserDefaultsKey];
+        [mutableDomain setValue:self.frameRateFieldValue forKey:kFrameFieldValueUserDefaultsKey];
+        [mutableDomain setValue:self.frameRateFieldModifier forKey:kFrameFieldModifierUserDefaultsKey];
+        [mutableDomain setValue:self.lastPath forKey:kLastPathUserDefaultsKey];
+        
+        if (self.videoCompressor != nil) {
+            [mutableDomain setValue:self.videoCompressor.userDefaults forKey:NSStringFromClass([self.videoCompressor class])];
+        }
+        
+        [[NSUserDefaults standardUserDefaults] setPersistentDomain:mutableDomain
                                                            forName:[[NSBundle bundleForClass:[self class]] bundleIdentifier]];
+        
         [[NSUserDefaults standardUserDefaults] synchronize];
     
     } else if ([keyPath isEqualToString:@"preview"]) {
@@ -384,9 +402,12 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
     [self removeObserver:self forKeyPath:@"frameRateFieldModifier"];
     [self removeObserver:self forKeyPath:@"lastPath"];
     [self removeObserver:self forKeyPath:@"preview"];
+    [self removeObserver:self forKeyPath:@"videoCompressor.userDefaults"];
     
     self.previewGenerator.cancelled = YES;
     self.previewGenerator = nil;
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     if ([self.previewPath length] > 0)
         [[NSFileManager defaultManager] removeItemAtPath:self.previewPath error:nil];

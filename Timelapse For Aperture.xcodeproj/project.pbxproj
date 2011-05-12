@@ -17,6 +17,7 @@
 		50A15C19137B347900215ABB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C18137B347900215ABB /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		50A15C1B137B380300215ABB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C1A137B380300215ABB /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		50A15C1D137B382800215ABB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C1C137B382800215ABB /* QuartzCore.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		50A8F8FF137C78970001073E /* H264VideoCompressor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50A8F8FE137C78960001073E /* H264VideoCompressor.xib */; };
 		50DE0A6F13772FC1002C613F /* PluginManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DE0A6E13772FC1002C613F /* PluginManager.framework */; };
 		50ED06461379EA2700A7565D /* PreviewGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED06451379EA2700A7565D /* PreviewGenerator.m */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		50A15C18137B347900215ABB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		50A15C1A137B380300215ABB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		50A15C1C137B382800215ABB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		50A8F8FE137C78960001073E /* H264VideoCompressor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = H264VideoCompressor.xib; sourceTree = "<group>"; };
 		50DE0A6E13772FC1002C613F /* PluginManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PluginManager.framework; path = /Library/Frameworks/PluginManager.framework; sourceTree = "<absolute>"; };
 		50ED06441379EA2700A7565D /* PreviewGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewGenerator.h; sourceTree = "<group>"; };
 		50ED06451379EA2700A7565D /* PreviewGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewGenerator.m; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				508EC287137C608100384FC7 /* VideoCompressor.h */,
 				50A15C14137B341700215ABB /* H264VideoCompressor.h */,
 				50A15C15137B341700215ABB /* H264VideoCompressor.m */,
+				50A8F8FE137C78960001073E /* H264VideoCompressor.xib */,
 				508EC288137C61B600384FC7 /* MotionJPEGCompressor.h */,
 				508EC289137C61B600384FC7 /* MotionJPEGCompressor.m */,
 			);
@@ -205,6 +208,7 @@
 			files = (
 				5072A75F13772BDA00022C98 /* InfoPlist.strings in Resources */,
 				5072A76A13772D0300022C98 /* TimeLapseApertureExporter.xib in Resources */,
+				50A8F8FF137C78970001073E /* H264VideoCompressor.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
