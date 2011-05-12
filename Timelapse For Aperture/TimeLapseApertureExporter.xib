@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<int key="IBDocument.SystemTarget">1070</int>
+		<string key="IBDocument.SystemVersion">11A444d</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1556</string>
+		<string key="IBDocument.AppKitVersion">1119.1</string>
+		<string key="IBDocument.HIToolboxVersion">555.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
@@ -15,8 +15,8 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>1306</string>
-				<string>30</string>
+				<string>1556</string>
+				<string>508</string>
 			</object>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
@@ -69,7 +69,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="NSView" id="629245732">
 						<reference key="NSNextResponder" ref="170844632"/>
-						<int key="NSvFlags">256</int>
+						<int key="NSvFlags">274</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="NSTextField" id="1000684609">
@@ -631,7 +631,7 @@
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="NSView" id="544682709">
 										<reference key="NSNextResponder" ref="397570316"/>
-										<int key="NSvFlags">256</int>
+										<int key="NSvFlags">274</int>
 										<string key="NSFrame">{{1, 1}, {382, 241}}</string>
 										<reference key="NSSuperview" ref="397570316"/>
 										<reference key="NSWindow"/>
@@ -661,14 +661,14 @@
 								<bool key="NSTransparent">NO</bool>
 							</object>
 						</object>
-						<string key="NSFrame">{{1, 271.856}, {547, 543}}</string>
+						<string key="NSFrame">{{1, 271.85599999999999}, {547, 543}}</string>
 						<reference key="NSSuperview" ref="170844632"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="924691549"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{549, 545}</string>
-				<string key="NSBounds">{{0, 270.856}, {549, 545}}</string>
+				<string key="NSBounds">{{0, 270.85599999999999}, {549, 545}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="629245732"/>
@@ -694,7 +694,7 @@
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSCustomView" id="714498850">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -703,7 +703,6 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{17, 91}, {336, 17}}</string>
 						<reference key="NSSuperview" ref="714498850"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="118831533">
 							<int key="NSCellFlags">68288064</int>
@@ -727,12 +726,11 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{370, 238}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="562591603"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="996901567">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -751,8 +749,6 @@
 						</object>
 						<string key="NSFrame">{{8, 8}, {331, 216}}</string>
 						<reference key="NSSuperview" ref="996901567"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="kCoderFillColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -764,8 +760,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{347, 230}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="105611729"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -971,6 +965,72 @@
 						<reference key="destination" ref="996901567"/>
 					</object>
 					<int key="connectionID">103</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: videoCompressor.canBeConfigured</string>
+						<reference key="source" ref="407587638"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="407587638"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: videoCompressor.canBeConfigured</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">videoCompressor.canBeConfigured</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">105</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">content: availableCompressors</string>
+						<reference key="source" ref="57356735"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="356358293">
+							<reference key="NSSource" ref="57356735"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">content: availableCompressors</string>
+							<string key="NSBinding">content</string>
+							<string key="NSKeyPath">availableCompressors</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">106</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: availableCompressors.name</string>
+						<reference key="source" ref="57356735"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="583404110">
+							<reference key="NSSource" ref="57356735"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">contentValues: availableCompressors.name</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">availableCompressors.name</string>
+							<reference key="NSPreviousConnector" ref="356358293"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">110</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedObject: videoCompressor</string>
+						<reference key="source" ref="57356735"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="57356735"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">selectedObject: videoCompressor</string>
+							<string key="NSBinding">selectedObject</string>
+							<string key="NSKeyPath">videoCompressor</string>
+							<reference key="NSPreviousConnector" ref="583404110"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">111</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1473,7 +1533,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">103</int>
+			<int key="maxID">111</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

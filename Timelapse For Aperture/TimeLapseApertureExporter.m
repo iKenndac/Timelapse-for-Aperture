@@ -8,6 +8,14 @@
 
 #import "TimeLapseApertureExporter.h"
 #import "PreviewGenerator.h"
+#import "MotionJPEGCompressor.h"
+#import <objc/runtime.h>
+
+@interface TimeLapseApertureExporter ()
+
+@property (nonatomic, readwrite, retain) NSArray *availableCompressors;
+
+@end
 
 static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefaultsKVOContext";
 
@@ -48,6 +56,43 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
         
         if (self.frameRateFieldModifier == nil)
             self.frameRateFieldModifier = [NSNumber numberWithUnsignedInteger:kFrameRateFramesPerSecondModifier];
+        
+        
+        // Init compressors!
+        
+        NSMutableArray *videoCompressors = [NSMutableArray array];
+        
+        int numClasses;
+        Class *classes = NULL;
+        numClasses = objc_getClassList(NULL, 0);
+        
+        if (numClasses > 0) {
+            classes = malloc(sizeof(Class) * numClasses);
+            objc_getClassList(classes, numClasses);
+            
+            for (int currentClassIndex = 0; currentClassIndex < numClasses; currentClassIndex++) {
+                
+                Class currentClass = classes[currentClassIndex];
+                
+                if (class_conformsToProtocol(currentClass, @protocol(VideoCompressor))) {
+                    
+                    id compressor = [[currentClass alloc] initWithPropertyListRepresentation:nil];
+                    if (compressor != nil) {
+                        [videoCompressors addObject:compressor];
+                        [compressor release];
+                    }
+                }
+            }
+            
+            numClasses = objc_getClassList(classes, numClasses);
+            free(classes);
+        }
+        
+        [videoCompressors sortUsingComparator:(NSComparator)^(id obj1, id obj2){
+            return [((id <VideoCompressor>)obj1).name caseInsensitiveCompare:((id <VideoCompressor>)obj2).name];
+        }];
+         
+        self.availableCompressors = [NSArray arrayWithArray:videoCompressors];
         
         if (self.lastPath == nil)
             self.lastPath = @"~/";
@@ -134,11 +179,12 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 @synthesize alsoExportImages;
 @synthesize frameRateFieldValue;
 @synthesize frameRateFieldModifier;
-@synthesize movie;
 @synthesize preview;
 @synthesize lastPath;
 @synthesize previewPath;
 @synthesize previewGenerator;
+@synthesize videoCompressor;
+@synthesize availableCompressors;
 
 +(NSSet *)keyPathsForValuesAffectingEstimatedMovieLength {
     return [NSSet setWithObjects:@"frameRateFieldValue", @"frameRateFieldModifier", nil];
@@ -155,6 +201,10 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
             return ((double)[self.exportManager imageCount]) * frameFieldValue;
         }
     }
+}
+
+-(IBAction)configureCodec:(id)sender {
+    [self.videoCompressor showConfigurationInParentWindow:[self.exportManager window]];
 }
 
 #pragma mark -
@@ -230,23 +280,15 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 	self.lastPath = path;
     
     // Make the movie
-    NSString *movieFileName = nil;
+    NSString *movieName = nil;
     
     @synchronized(exportManager) {
-        movieFileName = [[self.movieNameField stringValue] length] > 0 ? [self.movieNameField stringValue] :
+        movieName = [[self.movieNameField stringValue] length] > 0 ? [self.movieNameField stringValue] :
         [[self.exportManager propertiesWithoutThumbnailForImageAtIndex:0] valueForKey:kExportKeyProjectName];
     }
     
-    if (![[movieFileName pathExtension] isEqualToString:@"mov"])
-        movieFileName = [movieFileName stringByAppendingPathExtension:@"mov"];
-    
-    NSString *movieFilePath = [self.lastPath stringByAppendingPathComponent:movieFileName];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:movieFilePath])
-        [[NSFileManager defaultManager] removeItemAtPath:movieFilePath error:nil];
-    
-    self.movie = [[[QTMovie alloc] initToWritableFile:movieFilePath
-                                                error:nil] autorelease];
+    [self.videoCompressor prepareForImagesWithDestinationFolderURL:[NSURL fileURLWithPath:path]
+                                                         videoName:movieName];
     
 	// Update the progress structure to say Beginning Export... with an indeterminate progress bar.
 	[self lockProgress];
@@ -273,34 +315,20 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 	exportProgress.currentValue = index + 1;
 	[self unlockProgress];
     
-    double fps = 0;
     double frameFieldValue = [self.frameRateFieldValue doubleValue];
+    NSTimeInterval frameDuration = 0.0;
     
     if ([self.frameRateFieldModifier unsignedIntegerValue] == kFrameRateFramesPerSecondModifier) {
-        fps = frameFieldValue;
+        frameDuration = 1.0 / frameFieldValue;
     } else {
-        fps = 1.0 / frameFieldValue;
+        frameDuration = frameFieldValue;
     }
-    
-    /* TODO
-     
-     Make sure we tell QT if we're not adding JPG files.
-     
-     */
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    QTTime oneFrame = QTMakeTime(1000, (long)(fps * 1000));
+    [self.videoCompressor appendImageToVideo:[[[NSImage alloc] initWithData:imageData] autorelease]
+                       forOneFrameOfDuration:frameDuration]; 
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"jpeg", QTAddImageCodecType,
-                                [NSNumber numberWithLong:codecHighQuality], QTAddImageCodecQuality,
-                                [NSNumber numberWithLong:1000], QTTrackTimeScaleAttribute, nil];
-    
-    [self.movie addImage:[[[NSImage alloc] initWithData:imageData] autorelease] 
-             forDuration:oneFrame
-          withAttributes:attributes];
-	
     [pool drain];
     
 	// Tell Aperture to write the file out if needed.
@@ -313,10 +341,8 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 
 -(void)exportManagerDidFinishExport {
     
-    if ([self.movie canUpdateMovieFile])
-        [self.movie updateMovieFile];
-    
-    self.movie = nil;
+    [self.videoCompressor cleanup];
+    self.videoCompressor = nil;
     
     @synchronized(exportManager) {
         [self.exportManager shouldFinishExport];
@@ -325,14 +351,10 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 
 -(void)exportManagerShouldCancelExport {
     
-    if ([self.movie canUpdateMovieFile])
-        [self.movie updateMovieFile];
-    
-    [[NSFileManager defaultManager] removeItemAtPath:[[self.lastPath stringByAppendingPathComponent:[self.movieNameField stringValue]] 
-                                                      stringByAppendingPathExtension:@"mov"] 
-                                               error:nil];
-    
-    self.movie = nil;
+    [self.videoCompressor cleanup];
+    [[NSFileManager defaultManager] removeItemAtURL:self.videoCompressor.videoFileURL
+                                              error:nil];
+    self.videoCompressor = nil;
     
     @synchronized(exportManager) {
         [self.exportManager shouldCancelExport];
@@ -355,9 +377,6 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 	[self.progressLock unlock];
 }
 
-- (IBAction)configureCodec:(id)sender {
-}
-
 -(void)dealloc {
     
     [self removeObserver:self forKeyPath:@"alsoExportImages"];
@@ -377,7 +396,8 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
     self.lastPath = nil;
     self.frameRateFieldValue = nil;
     self.frameRateFieldModifier = nil;
-    self.movie = nil;
+    [self.videoCompressor cleanup];
+    self.videoCompressor = nil;
     self.apiManager = nil;
     self.exportManager = nil;
     self.progressLock = nil;

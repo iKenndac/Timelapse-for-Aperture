@@ -12,6 +12,11 @@
 		5072A75F13772BDA00022C98 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5072A75D13772BDA00022C98 /* InfoPlist.strings */; };
 		5072A76813772BFA00022C98 /* TimeLapseApertureExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5072A76713772BFA00022C98 /* TimeLapseApertureExporter.m */; };
 		5072A76A13772D0300022C98 /* TimeLapseApertureExporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5072A76913772D0300022C98 /* TimeLapseApertureExporter.xib */; };
+		508EC28A137C61B600384FC7 /* MotionJPEGCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 508EC289137C61B600384FC7 /* MotionJPEGCompressor.m */; };
+		50A15C16137B341700215ABB /* H264VideoCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A15C15137B341700215ABB /* H264VideoCompressor.m */; };
+		50A15C19137B347900215ABB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C18137B347900215ABB /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		50A15C1B137B380300215ABB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C1A137B380300215ABB /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		50A15C1D137B382800215ABB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C1C137B382800215ABB /* QuartzCore.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		50DE0A6F13772FC1002C613F /* PluginManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DE0A6E13772FC1002C613F /* PluginManager.framework */; };
 		50ED06461379EA2700A7565D /* PreviewGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED06451379EA2700A7565D /* PreviewGenerator.m */; };
 /* End PBXBuildFile section */
@@ -31,6 +36,14 @@
 		5072A76913772D0300022C98 /* TimeLapseApertureExporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLapseApertureExporter.xib; sourceTree = "<group>"; };
 		5072A76B13772E7300022C98 /* ApertureExportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApertureExportManager.h; sourceTree = "<group>"; };
 		5072A76C13772E7300022C98 /* ApertureExportPlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApertureExportPlugIn.h; sourceTree = "<group>"; };
+		508EC287137C608100384FC7 /* VideoCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCompressor.h; sourceTree = "<group>"; };
+		508EC288137C61B600384FC7 /* MotionJPEGCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionJPEGCompressor.h; sourceTree = "<group>"; };
+		508EC289137C61B600384FC7 /* MotionJPEGCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionJPEGCompressor.m; sourceTree = "<group>"; };
+		50A15C14137B341700215ABB /* H264VideoCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H264VideoCompressor.h; sourceTree = "<group>"; };
+		50A15C15137B341700215ABB /* H264VideoCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = H264VideoCompressor.m; sourceTree = "<group>"; };
+		50A15C18137B347900215ABB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		50A15C1A137B380300215ABB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		50A15C1C137B382800215ABB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		50DE0A6E13772FC1002C613F /* PluginManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PluginManager.framework; path = /Library/Frameworks/PluginManager.framework; sourceTree = "<absolute>"; };
 		50ED06441379EA2700A7565D /* PreviewGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewGenerator.h; sourceTree = "<group>"; };
 		50ED06451379EA2700A7565D /* PreviewGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewGenerator.m; sourceTree = "<group>"; };
@@ -41,6 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A15C1D137B382800215ABB /* QuartzCore.framework in Frameworks */,
+				50A15C1B137B380300215ABB /* CoreMedia.framework in Frameworks */,
+				50A15C19137B347900215ABB /* AVFoundation.framework in Frameworks */,
 				500A70A213788D45000B9666 /* QTKit.framework in Frameworks */,
 				50DE0A6F13772FC1002C613F /* PluginManager.framework in Frameworks */,
 				5072A75513772BDA00022C98 /* Cocoa.framework in Frameworks */,
@@ -70,6 +86,9 @@
 		5072A75313772BDA00022C98 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50A15C1A137B380300215ABB /* CoreMedia.framework */,
+				50A15C1C137B382800215ABB /* QuartzCore.framework */,
+				50A15C18137B347900215ABB /* AVFoundation.framework */,
 				500A70A113788D45000B9666 /* QTKit.framework */,
 				50DE0A6E13772FC1002C613F /* PluginManager.framework */,
 				5072A75413772BDA00022C98 /* Cocoa.framework */,
@@ -96,6 +115,7 @@
 				5072A76713772BFA00022C98 /* TimeLapseApertureExporter.m */,
 				50ED06441379EA2700A7565D /* PreviewGenerator.h */,
 				50ED06451379EA2700A7565D /* PreviewGenerator.m */,
+				50A15C1E137B3E6600215ABB /* Compressors */,
 				5072A75B13772BDA00022C98 /* Supporting Files */,
 				5072A76913772D0300022C98 /* TimeLapseApertureExporter.xib */,
 			);
@@ -110,6 +130,18 @@
 				5072A76013772BDA00022C98 /* Timelapse For Aperture-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		50A15C1E137B3E6600215ABB /* Compressors */ = {
+			isa = PBXGroup;
+			children = (
+				508EC287137C608100384FC7 /* VideoCompressor.h */,
+				50A15C14137B341700215ABB /* H264VideoCompressor.h */,
+				50A15C15137B341700215ABB /* H264VideoCompressor.m */,
+				508EC288137C61B600384FC7 /* MotionJPEGCompressor.h */,
+				508EC289137C61B600384FC7 /* MotionJPEGCompressor.m */,
+			);
+			name = Compressors;
 			sourceTree = "<group>";
 		};
 		50DE0A7D137731C4002C613F /* Aperture Headers */ = {
@@ -185,6 +217,8 @@
 			files = (
 				5072A76813772BFA00022C98 /* TimeLapseApertureExporter.m in Sources */,
 				50ED06461379EA2700A7565D /* PreviewGenerator.m in Sources */,
+				50A15C16137B341700215ABB /* H264VideoCompressor.m in Sources */,
+				508EC28A137C61B600384FC7 /* MotionJPEGCompressor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

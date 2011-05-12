@@ -8,6 +8,7 @@
 
 #import "PreviewGenerator.h"
 #import "TimeLapseApertureExporter.h"
+#import <QTKit/QTKit.h>
 
 @implementation PreviewGenerator
 

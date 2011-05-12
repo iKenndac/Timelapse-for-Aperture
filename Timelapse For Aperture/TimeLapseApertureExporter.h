@@ -6,10 +6,11 @@
 //  Copyright 2011 KennettNet Software Limited. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <QTKit/QTKit.h>
+#import <Cocoa/Cocoa.h>
 #import "ApertureExportManager.h"
 #import "ApertureExportPlugIn.h"
+#import "VideoCompressor.h"
+#import <QTKit/QTKit.h>
 
 @class PreviewGenerator;
 
@@ -49,11 +50,14 @@ static NSTimeInterval const kMaximumPreviewLength = 5.0;
     
     // --
     
-    QTMovie *movie;
     QTMovie *preview;
     NSString *previewPath;
     PreviewGenerator *previewGenerator;
+    id <VideoCompressor> videoCompressor;
     
+    // -- 
+    
+    NSArray *availableCompressors;
 }
 
 @property (assign) IBOutlet NSView *firstView;
@@ -78,10 +82,14 @@ static NSTimeInterval const kMaximumPreviewLength = 5.0;
 
 // --
 
-@property (nonatomic, readwrite, retain) QTMovie *movie;
 @property (nonatomic, readwrite, retain) QTMovie *preview;
 @property (readwrite, copy) NSString *previewPath;
 @property (readwrite, retain) PreviewGenerator *previewGenerator;
+@property (readwrite, retain) id <VideoCompressor> videoCompressor;
+
+// --
+
+@property (nonatomic, readonly, retain) NSArray *availableCompressors;
 
 -(void)lockProgress;
 -(void)unlockProgress;
