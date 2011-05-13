@@ -25,3 +25,10 @@
 -(void)showConfigurationInParentWindow:(NSWindow *)parentWindow;
 
 @end
+
+@interface VideoCompressorUtilities : NSObject {
+}
+
++(NSURL *)fileURLWithUniqueNameForFile:(NSString *)fileName inParentDirectory:(NSURL *)parent;
+
+@end

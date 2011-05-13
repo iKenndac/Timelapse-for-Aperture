@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		500A70A213788D45000B9666 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 500A70A113788D45000B9666 /* QTKit.framework */; };
+		5016BD60137DAA7800BF946C /* VideoCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016BD5F137DAA7800BF946C /* VideoCompressor.m */; };
 		5072A75513772BDA00022C98 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5072A75413772BDA00022C98 /* Cocoa.framework */; };
 		5072A75F13772BDA00022C98 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5072A75D13772BDA00022C98 /* InfoPlist.strings */; };
 		5072A76813772BFA00022C98 /* TimeLapseApertureExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5072A76713772BFA00022C98 /* TimeLapseApertureExporter.m */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		500A70A113788D45000B9666 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		5016BD5F137DAA7800BF946C /* VideoCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCompressor.m; sourceTree = "<group>"; };
 		5072A75113772BDA00022C98 /* Timelapse For Aperture.ApertureExport */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Timelapse For Aperture.ApertureExport"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5072A75413772BDA00022C98 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5072A75713772BDA00022C98 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				508EC287137C608100384FC7 /* VideoCompressor.h */,
+				5016BD5F137DAA7800BF946C /* VideoCompressor.m */,
 				50A15C14137B341700215ABB /* H264VideoCompressor.h */,
 				50A15C15137B341700215ABB /* H264VideoCompressor.m */,
 				50A8F8FE137C78960001073E /* H264VideoCompressor.xib */,
@@ -223,6 +226,7 @@
 				50ED06461379EA2700A7565D /* PreviewGenerator.m in Sources */,
 				50A15C16137B341700215ABB /* H264VideoCompressor.m in Sources */,
 				508EC28A137C61B600384FC7 /* MotionJPEGCompressor.m in Sources */,
+				5016BD60137DAA7800BF946C /* VideoCompressor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

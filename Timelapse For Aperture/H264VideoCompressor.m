@@ -79,17 +79,10 @@ static NSString * const kCompressionBitRateMbitUserDefaultsKey = @"MegaBits";
 
 -(void)prepareForImagesWithDestinationFolderURL:(NSURL *)destination videoName:(NSString *)name {
     
-    NSURL *targetURL = [destination URLByAppendingPathComponent:name];
+    if (![[name pathExtension] isEqualToString:@"mp4"])
+        name = [name stringByAppendingPathExtension:@"mp4"];
     
-    if (![[targetURL pathExtension] isEqualToString:@"mp4"])
-        targetURL = [targetURL URLByAppendingPathExtension:@"mp4"];
-    
-    self.videoFileURL = targetURL;
-    
-    NSString *videoFilePath = [self.videoFileURL path];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:videoFilePath])
-        [[NSFileManager defaultManager] removeItemAtURL:self.videoFileURL error:nil];
+    self.videoFileURL = [VideoCompressorUtilities fileURLWithUniqueNameForFile:name inParentDirectory:destination];
 }
 
 -(void)appendImageToVideo:(NSImage *)anImage forOneFrameAtFPS:(double)fps {

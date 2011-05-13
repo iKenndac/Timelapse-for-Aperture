@@ -45,19 +45,12 @@ static uint32_t const kQuickTimeExportTimeScale = 1000000;
 
 -(void)prepareForImagesWithDestinationFolderURL:(NSURL *)destination videoName:(NSString *)name {
     
-    NSURL *targetURL = [destination URLByAppendingPathComponent:name];
+    if (![[name pathExtension] isEqualToString:@"mov"])
+        name = [name stringByAppendingPathExtension:@"mov"];
     
-    if (![[targetURL pathExtension] isEqualToString:@"mov"])
-        targetURL = [targetURL URLByAppendingPathExtension:@"mov"];
+    self.videoFileURL = [VideoCompressorUtilities fileURLWithUniqueNameForFile:name inParentDirectory:destination];
     
-    self.videoFileURL = targetURL;
-    
-    NSString *videoFilePath = [self.videoFileURL path];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:videoFilePath])
-        [[NSFileManager defaultManager] removeItemAtURL:self.videoFileURL error:nil];
-    
-    self.movie = [[[QTMovie alloc] initToWritableFile:videoFilePath
+    self.movie = [[[QTMovie alloc] initToWritableFile:[self.videoFileURL path]
                                                 error:nil] autorelease];
 }
 
