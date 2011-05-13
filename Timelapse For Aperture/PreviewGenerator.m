@@ -58,7 +58,7 @@
     QTTime oneFrame = QTMakeTime(1000, (long)(fps * 1000));
     
     NSUInteger previewFrameCount = (totalFrameCount * frameDuration) >= kMaximumPreviewLength ?
-    ceil(kMaximumPreviewLength / frameDuration) : totalFrameCount;
+                                        ceil(kMaximumPreviewLength / frameDuration) : totalFrameCount;
     
     if (self.cancelled) {
         [pool drain];
@@ -67,8 +67,8 @@
     }
     
     NSString *newPreviewPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[[NSProcessInfo processInfo] globallyUniqueString]];
-    QTMovie *previewMovie = [[QTMovie alloc] initToWritableFile:newPreviewPath
-                                                          error:nil];
+    QTMovie *previewMovie = [[[QTMovie alloc] initToWritableFile:newPreviewPath
+                                                           error:nil] autorelease];
     
     for (NSUInteger currentFrame = 0; currentFrame < previewFrameCount; currentFrame++) {
         
@@ -114,7 +114,6 @@
                                     withObject:previewMovie
                                  waitUntilDone:YES];
     
-    [previewMovie release];
     [pool drain];
     [self release];
 }

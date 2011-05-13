@@ -13,6 +13,7 @@
 @interface MotionJPEGCompressor : NSObject <VideoCompressor> {
 @private
     QTMovie *movie;
+    NSURL *videoFileURL;
 }
 
 @property (nonatomic, readwrite, retain) QTMovie *movie;

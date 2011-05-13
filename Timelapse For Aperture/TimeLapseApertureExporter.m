@@ -68,7 +68,7 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
         
         if (numClasses > 0) {
             classes = malloc(sizeof(Class) * numClasses);
-            objc_getClassList(classes, numClasses);
+            numClasses = objc_getClassList(classes, numClasses);
             
             for (int currentClassIndex = 0; currentClassIndex < numClasses; currentClassIndex++) {
                 
@@ -86,7 +86,6 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
                 }
             }
             
-            numClasses = objc_getClassList(classes, numClasses);
             free(classes);
         }
         
