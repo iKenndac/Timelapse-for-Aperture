@@ -333,19 +333,19 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 	exportProgress.currentValue = index + 1;
 	[self unlockProgress];
     
+    double fps = 0;
     double frameFieldValue = [self.frameRateFieldValue doubleValue];
-    NSTimeInterval frameDuration = 0.0;
     
     if ([self.frameRateFieldModifier unsignedIntegerValue] == kFrameRateFramesPerSecondModifier) {
-        frameDuration = 1.0 / frameFieldValue;
+        fps = frameFieldValue;
     } else {
-        frameDuration = frameFieldValue;
+        fps = 1.0 / frameFieldValue;
     }
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     [self.videoCompressor appendImageToVideo:[[[NSImage alloc] initWithData:imageData] autorelease]
-                       forOneFrameOfDuration:frameDuration]; 
+                            forOneFrameAtFPS:fps];
     
     [pool drain];
     

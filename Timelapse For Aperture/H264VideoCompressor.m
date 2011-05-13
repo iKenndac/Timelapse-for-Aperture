@@ -8,7 +8,7 @@
 
 #import "H264VideoCompressor.h"
 
-static uint32_t const kExportTimeScale = 10000;
+static uint32_t const kExportTimeScale = 1000000000;
 static NSString * const kCompressionBitRateMbitUserDefaultsKey = @"MegaBits";
 
 @interface H264VideoCompressor()
@@ -22,7 +22,7 @@ static NSString * const kCompressionBitRateMbitUserDefaultsKey = @"MegaBits";
 
 -(id)initWithPropertyListRepresentation:(NSDictionary *)plist {
     
-    if (NSClassFromString(@"AVAssetWriterInput") == Nil) {
+    if (NSClassFromString(@"AVAssetWriterInput") == nil) {
         [self release];
         return nil;
     }
@@ -92,7 +92,7 @@ static NSString * const kCompressionBitRateMbitUserDefaultsKey = @"MegaBits";
         [[NSFileManager defaultManager] removeItemAtURL:self.videoFileURL error:nil];
 }
 
--(void)appendImageToVideo:(NSImage *)anImage forOneFrameOfDuration:(NSTimeInterval)frameDuration {
+-(void)appendImageToVideo:(NSImage *)anImage forOneFrameAtFPS:(double)fps {
     
     if (self.imageInputAdaptor == nil)
         [self setupWithSize:[anImage size]];
@@ -103,6 +103,8 @@ static NSString * const kCompressionBitRateMbitUserDefaultsKey = @"MegaBits";
     while (!self.imageInputAdaptor.assetWriterInput.readyForMoreMediaData) {
         [NSThread sleepForTimeInterval:0.05];
     }
+    
+    NSTimeInterval frameDuration = 1.0 / fps;
     
     CMTime frameTime = CMTimeMake(currentEndLocation, kExportTimeScale);
     

@@ -8,6 +8,8 @@
 
 #import "MotionJPEGCompressor.h"
 
+static uint32_t const kQuickTimeExportTimeScale = 1000000; 
+// ^ Using a number as high as the one in H264Compressor.m causes QTKit to silently fail.
 
 @implementation MotionJPEGCompressor
 
@@ -59,21 +61,19 @@
                                                 error:nil] autorelease];
 }
 
--(void)appendImageToVideo:(NSImage *)anImage forOneFrameOfDuration:(NSTimeInterval)frameDuration {
+-(void)appendImageToVideo:(NSImage *)anImage forOneFrameAtFPS:(double)fps {
     
-    double fps = 1.0 / frameDuration;
-    QTTime oneFrame = QTMakeTime(1000, (long)(fps * 1000));
+    QTTime oneFrame = QTMakeTime(kQuickTimeExportTimeScale, (long)(fps * kQuickTimeExportTimeScale));
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 @"jpeg", QTAddImageCodecType,
                                 [NSNumber numberWithLong:codecHighQuality], QTAddImageCodecQuality,
-                                [NSNumber numberWithLong:1000], QTTrackTimeScaleAttribute, nil];
+                                [NSNumber numberWithUnsignedInteger:kQuickTimeExportTimeScale], QTTrackTimeScaleAttribute, nil];
     
     [self.movie addImage:anImage forDuration:oneFrame withAttributes:attributes];
 }
 
 -(void)cleanup {
-    
     if ([self.movie canUpdateMovieFile])
         [self.movie updateMovieFile];
     

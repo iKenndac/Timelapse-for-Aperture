@@ -13,7 +13,7 @@
 -(id)initWithPropertyListRepresentation:(NSDictionary *)plist;
 
 -(void)prepareForImagesWithDestinationFolderURL:(NSURL *)destination videoName:(NSString *)name;
--(void)appendImageToVideo:(NSImage *)anImage forOneFrameOfDuration:(NSTimeInterval)frameDuration;
+-(void)appendImageToVideo:(NSImage *)anImage forOneFrameAtFPS:(double)fps;
 -(void)cleanup;
 
 @property (nonatomic, readwrite, copy) NSURL *videoFileURL;
