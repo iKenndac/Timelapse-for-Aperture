@@ -313,7 +313,7 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
 	[self lockProgress];
 	exportProgress.totalValue = [self.exportManager imageCount];
 	exportProgress.indeterminateProgress = YES;
-	exportProgress.message = [@"Beginning Export..." retain];
+	exportProgress.message = [NSLocalizedStringFromTableInBundle(@"beginning export", @"Localizable", [NSBundle bundleForClass:[self class]], @"Beginning Export...") retain];
 	[self unlockProgress];
 }
 
@@ -330,7 +330,7 @@ static NSString * const kTimeLapseUserDefaultsKVOContext = @"kTimeLapseUserDefau
     // Update the progress
 	[self lockProgress];
 	[exportProgress.message release];
-	exportProgress.message = [@"Exporting..." retain];
+	exportProgress.message = [NSLocalizedStringFromTableInBundle(@"exporting", @"Localizable", [NSBundle bundleForClass:[self class]], @"Exporting...") retain];
 	exportProgress.currentValue = index + 1;
 	[self unlockProgress];
     

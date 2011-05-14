@@ -32,7 +32,7 @@ static uint32_t const kQuickTimeExportTimeScale = 1000000;
 }
 
 -(NSString *)name {
-    return @"Motion JPEG";
+    return NSLocalizedStringFromTableInBundle(@"MJPEGCompressorName", @"Localizable", [NSBundle bundleForClass:[self class]], @"Motion JPEG");
 }
 
 -(void)showConfigurationInParentWindow:(NSWindow *)parentWindow {

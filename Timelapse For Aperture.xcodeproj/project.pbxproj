@@ -12,14 +12,15 @@
 		5072A75513772BDA00022C98 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5072A75413772BDA00022C98 /* Cocoa.framework */; };
 		5072A75F13772BDA00022C98 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5072A75D13772BDA00022C98 /* InfoPlist.strings */; };
 		5072A76813772BFA00022C98 /* TimeLapseApertureExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5072A76713772BFA00022C98 /* TimeLapseApertureExporter.m */; };
-		5072A76A13772D0300022C98 /* TimeLapseApertureExporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5072A76913772D0300022C98 /* TimeLapseApertureExporter.xib */; };
+		507CBCC6137EB5A300B865CD /* H264VideoCompressor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 507CBCC8137EB5A300B865CD /* H264VideoCompressor.xib */; };
+		507CBCCA137EB5B500B865CD /* TimeLapseApertureExporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 507CBCCC137EB5B500B865CD /* TimeLapseApertureExporter.xib */; };
+		507CBCCF137EB5D600B865CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 507CBCD1137EB5D600B865CD /* Localizable.strings */; };
 		508EC28A137C61B600384FC7 /* MotionJPEGCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 508EC289137C61B600384FC7 /* MotionJPEGCompressor.m */; };
 		50A15C16137B341700215ABB /* H264VideoCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A15C15137B341700215ABB /* H264VideoCompressor.m */; };
 		50A15C19137B347900215ABB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C18137B347900215ABB /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		50A15C1B137B380300215ABB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C1A137B380300215ABB /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		50A15C1D137B382800215ABB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C1C137B382800215ABB /* QuartzCore.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		50A7B713137DC08800320BC0 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 50A7B712137DC08800320BC0 /* README.markdown */; };
-		50A8F8FF137C78970001073E /* H264VideoCompressor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50A8F8FE137C78960001073E /* H264VideoCompressor.xib */; };
 		50DE0A6F13772FC1002C613F /* PluginManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DE0A6E13772FC1002C613F /* PluginManager.framework */; };
 		50ED06461379EA2700A7565D /* PreviewGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED06451379EA2700A7565D /* PreviewGenerator.m */; };
 /* End PBXBuildFile section */
@@ -37,9 +38,11 @@
 		5072A76013772BDA00022C98 /* Timelapse For Aperture-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Timelapse For Aperture-Prefix.pch"; sourceTree = "<group>"; };
 		5072A76613772BFA00022C98 /* TimeLapseApertureExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLapseApertureExporter.h; sourceTree = "<group>"; };
 		5072A76713772BFA00022C98 /* TimeLapseApertureExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLapseApertureExporter.m; sourceTree = "<group>"; };
-		5072A76913772D0300022C98 /* TimeLapseApertureExporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLapseApertureExporter.xib; sourceTree = "<group>"; };
 		5072A76B13772E7300022C98 /* ApertureExportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApertureExportManager.h; sourceTree = "<group>"; };
 		5072A76C13772E7300022C98 /* ApertureExportPlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApertureExportPlugIn.h; sourceTree = "<group>"; };
+		507CBCC7137EB5A300B865CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/H264VideoCompressor.xib; sourceTree = "<group>"; };
+		507CBCCB137EB5B500B865CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TimeLapseApertureExporter.xib; sourceTree = "<group>"; };
+		507CBCD0137EB5D600B865CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		508EC287137C608100384FC7 /* VideoCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCompressor.h; sourceTree = "<group>"; };
 		508EC288137C61B600384FC7 /* MotionJPEGCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionJPEGCompressor.h; sourceTree = "<group>"; };
 		508EC289137C61B600384FC7 /* MotionJPEGCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionJPEGCompressor.m; sourceTree = "<group>"; };
@@ -49,7 +52,6 @@
 		50A15C1A137B380300215ABB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		50A15C1C137B382800215ABB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		50A7B712137DC08800320BC0 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
-		50A8F8FE137C78960001073E /* H264VideoCompressor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = H264VideoCompressor.xib; sourceTree = "<group>"; };
 		50DE0A6E13772FC1002C613F /* PluginManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PluginManager.framework; path = /Library/Frameworks/PluginManager.framework; sourceTree = "<absolute>"; };
 		50ED06441379EA2700A7565D /* PreviewGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewGenerator.h; sourceTree = "<group>"; };
 		50ED06451379EA2700A7565D /* PreviewGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewGenerator.m; sourceTree = "<group>"; };
@@ -120,11 +122,11 @@
 				50DE0A7D137731C4002C613F /* Aperture Headers */,
 				5072A76613772BFA00022C98 /* TimeLapseApertureExporter.h */,
 				5072A76713772BFA00022C98 /* TimeLapseApertureExporter.m */,
+				507CBCCC137EB5B500B865CD /* TimeLapseApertureExporter.xib */,
 				50ED06441379EA2700A7565D /* PreviewGenerator.h */,
 				50ED06451379EA2700A7565D /* PreviewGenerator.m */,
 				50A15C1E137B3E6600215ABB /* Compressors */,
 				5072A75B13772BDA00022C98 /* Supporting Files */,
-				5072A76913772D0300022C98 /* TimeLapseApertureExporter.xib */,
 			);
 			path = "Timelapse For Aperture";
 			sourceTree = "<group>";
@@ -135,6 +137,7 @@
 				5072A75C13772BDA00022C98 /* Timelapse For Aperture-Info.plist */,
 				5072A75D13772BDA00022C98 /* InfoPlist.strings */,
 				5072A76013772BDA00022C98 /* Timelapse For Aperture-Prefix.pch */,
+				507CBCD1137EB5D600B865CD /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -146,7 +149,7 @@
 				5016BD5F137DAA7800BF946C /* VideoCompressor.m */,
 				50A15C14137B341700215ABB /* H264VideoCompressor.h */,
 				50A15C15137B341700215ABB /* H264VideoCompressor.m */,
-				50A8F8FE137C78960001073E /* H264VideoCompressor.xib */,
+				507CBCC8137EB5A300B865CD /* H264VideoCompressor.xib */,
 				508EC288137C61B600384FC7 /* MotionJPEGCompressor.h */,
 				508EC289137C61B600384FC7 /* MotionJPEGCompressor.m */,
 			);
@@ -188,6 +191,7 @@
 		5072A74813772BDA00022C98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0410;
 				ORGANIZATIONNAME = "KennettNet Software Limited";
 			};
 			buildConfigurationList = 5072A74B13772BDA00022C98 /* Build configuration list for PBXProject "Timelapse For Aperture" */;
@@ -213,9 +217,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5072A75F13772BDA00022C98 /* InfoPlist.strings in Resources */,
-				5072A76A13772D0300022C98 /* TimeLapseApertureExporter.xib in Resources */,
-				50A8F8FF137C78970001073E /* H264VideoCompressor.xib in Resources */,
+				507CBCCA137EB5B500B865CD /* TimeLapseApertureExporter.xib in Resources */,
+				507CBCC6137EB5A300B865CD /* H264VideoCompressor.xib in Resources */,
 				50A7B713137DC08800320BC0 /* README.markdown in Resources */,
+				507CBCCF137EB5D600B865CD /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +250,30 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		507CBCC8137EB5A300B865CD /* H264VideoCompressor.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				507CBCC7137EB5A300B865CD /* en */,
+			);
+			name = H264VideoCompressor.xib;
+			sourceTree = "<group>";
+		};
+		507CBCCC137EB5B500B865CD /* TimeLapseApertureExporter.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				507CBCCB137EB5B500B865CD /* en */,
+			);
+			name = TimeLapseApertureExporter.xib;
+			sourceTree = "<group>";
+		};
+		507CBCD1137EB5D600B865CD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				507CBCD0137EB5D600B865CD /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -258,12 +287,13 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -274,11 +304,12 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

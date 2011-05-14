@@ -52,7 +52,7 @@ static NSString * const kCompressionBitRateMbitUserDefaultsKey = @"MegaBits";
 }
 
 -(NSString *)name {
-    return @"H.264";
+    return NSLocalizedStringFromTableInBundle(@"H264CompressorName", @"Localizable", [NSBundle bundleForClass:[self class]], @"H.264");
 }
 
 +(NSSet *)keyPathsForValuesAffectingUserDefaults {

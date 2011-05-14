@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Timelapse For Aperture
+
+  Created by Daniel Kennett on 5/14/11.
+  Copyright 2011 KennettNet Software Limited. All rights reserved.
+*/
+
+"H264CompressorName" = "H.264";
+"MJPEGCompressorName" = "Motion JPEG";
+
+"beginning export" = "Beginning Export…";
+"exporting" = "Exporting…";
