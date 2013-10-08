@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		500A70A213788D45000B9666 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 500A70A113788D45000B9666 /* QTKit.framework */; };
 		5016BD60137DAA7800BF946C /* VideoCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016BD5F137DAA7800BF946C /* VideoCompressor.m */; };
+		50432019180439DA0042DE59 /* PluginManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50432018180439DA0042DE59 /* PluginManager.framework */; };
 		5072A75513772BDA00022C98 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5072A75413772BDA00022C98 /* Cocoa.framework */; };
 		5072A75F13772BDA00022C98 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5072A75D13772BDA00022C98 /* InfoPlist.strings */; };
 		5072A76813772BFA00022C98 /* TimeLapseApertureExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5072A76713772BFA00022C98 /* TimeLapseApertureExporter.m */; };
@@ -21,13 +22,13 @@
 		50A15C1B137B380300215ABB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C1A137B380300215ABB /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		50A15C1D137B382800215ABB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A15C1C137B382800215ABB /* QuartzCore.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		50A7B713137DC08800320BC0 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 50A7B712137DC08800320BC0 /* README.markdown */; };
-		50DE0A6F13772FC1002C613F /* PluginManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DE0A6E13772FC1002C613F /* PluginManager.framework */; };
 		50ED06461379EA2700A7565D /* PreviewGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED06451379EA2700A7565D /* PreviewGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		500A70A113788D45000B9666 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		5016BD5F137DAA7800BF946C /* VideoCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCompressor.m; sourceTree = "<group>"; };
+		50432018180439DA0042DE59 /* PluginManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PluginManager.framework; path = ../../../../../Library/Frameworks/PluginManager.framework; sourceTree = "<group>"; };
 		5072A75113772BDA00022C98 /* Timelapse For Aperture.ApertureExport */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Timelapse For Aperture.ApertureExport"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5072A75413772BDA00022C98 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5072A75713772BDA00022C98 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -52,7 +53,6 @@
 		50A15C1A137B380300215ABB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		50A15C1C137B382800215ABB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		50A7B712137DC08800320BC0 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
-		50DE0A6E13772FC1002C613F /* PluginManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PluginManager.framework; path = /Library/Frameworks/PluginManager.framework; sourceTree = "<absolute>"; };
 		50ED06441379EA2700A7565D /* PreviewGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewGenerator.h; sourceTree = "<group>"; };
 		50ED06451379EA2700A7565D /* PreviewGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,8 +65,8 @@
 				50A15C1D137B382800215ABB /* QuartzCore.framework in Frameworks */,
 				50A15C1B137B380300215ABB /* CoreMedia.framework in Frameworks */,
 				50A15C19137B347900215ABB /* AVFoundation.framework in Frameworks */,
+				50432019180439DA0042DE59 /* PluginManager.framework in Frameworks */,
 				500A70A213788D45000B9666 /* QTKit.framework in Frameworks */,
-				50DE0A6F13772FC1002C613F /* PluginManager.framework in Frameworks */,
 				5072A75513772BDA00022C98 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,11 +95,11 @@
 		5072A75313772BDA00022C98 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50432018180439DA0042DE59 /* PluginManager.framework */,
 				50A15C1A137B380300215ABB /* CoreMedia.framework */,
 				50A15C1C137B382800215ABB /* QuartzCore.framework */,
 				50A15C18137B347900215ABB /* AVFoundation.framework */,
 				500A70A113788D45000B9666 /* QTKit.framework */,
-				50DE0A6E13772FC1002C613F /* PluginManager.framework */,
 				5072A75413772BDA00022C98 /* Cocoa.framework */,
 				5072A75613772BDA00022C98 /* Other Frameworks */,
 			);
@@ -318,6 +318,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -335,6 +339,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timelapse For Aperture/Timelapse For Aperture-Prefix.pch";
